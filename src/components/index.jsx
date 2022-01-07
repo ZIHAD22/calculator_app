@@ -3,7 +3,15 @@ import CalcuBtnFanc from "./CalcuBtnFanc";
 import NumberPlate from "./numberPlate";
 import { selectFild } from "./AllFunc";
 class Calculet extends Component {
-  inputFild = selectFild("#fildOfCall");
+  state = {
+    fild: [0],
+  };
+
+  seperatArray = () => {
+    let storeOfArr = "";
+    this.state.fild.forEach((item) => (storeOfArr += item));
+    return storeOfArr;
+  };
 
   render() {
     return (
@@ -11,13 +19,13 @@ class Calculet extends Component {
         <input
           id="fildOfCall"
           type="number"
-          value="10"
+          value={this.seperatArray()}
           onChange={() => {
             console.log("nothing");
           }}
         />
-        <NumberPlate />
-        {console.log(this.inputFild.value)}
+        <NumberPlate state={this.state} />
+        {/* {console.log(this.inputFild.value)} */}
       </div>
     );
   }
